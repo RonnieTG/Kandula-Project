@@ -1,9 +1,8 @@
 # This file contains variables for the EC2 module #
 
 
-provider "aws" {
-    region  = var.region
-    profile = "ronnie"
+variable "region" {
+  default = "us-east-1"
 }
 
 variable "ubuntu_account_number" {
@@ -12,4 +11,8 @@ variable "ubuntu_account_number" {
 
 variable "environment_tag" {
     default = "Kandula-PROD"
+}
+
+variable "instance_type" {
+    default = "t2-micro"
 }

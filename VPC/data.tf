@@ -8,8 +8,8 @@ data "aws_availability_zones" "available" {
 
 terraform {
   backend "s3" {
-    bucket = "remote-state-for-tf-hw3"
-    key    = "homework3/terraform.tfstate"
+    bucket = "kandula-prod-remote-state"
+    key    = "kandula/terraform.tfstate"
     region = "us-east-1"
   }
 }

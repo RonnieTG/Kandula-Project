@@ -22,3 +22,7 @@ variable "public_subnets" {
 variable "environment_tag" {
     default = "Kandula-PROD"
 }
+
+variable "ubuntu_account_number" {
+  default = "099720109477"
+}
