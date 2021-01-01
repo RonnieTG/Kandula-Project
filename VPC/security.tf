@@ -9,7 +9,8 @@ resource "aws_security_group" "ansible_servers" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    self = true
+    cidr_blocks = ["0.0.0.0/0"]
+    #self = true
   }
 
   egress {
