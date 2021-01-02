@@ -20,3 +20,12 @@ variable "instance_type" {
 variable "key_name" {
   default = "Ronnie-US-key-pair"
 }
+
+#variable "ebs_block_device" {
+#  default = {
+#    device_name = "/dev/sdb"
+#    volume_size = "10"
+#    volume_type = "standard"
+#    encrypted   = true
+#  }
+#}
