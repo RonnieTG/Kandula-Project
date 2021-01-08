@@ -52,6 +52,13 @@ resource "aws_security_group" "consul_servers" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.10.100.0/24", "10.10.110.0/24", "10.10.120.0/24"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -83,6 +90,13 @@ resource "aws_security_group" "jenkins_master" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+    ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -91,7 +105,7 @@ resource "aws_security_group" "jenkins_master" {
   }
 
   tags = {
-    Name = "${var.environment_tag} - Jenkins Master Security Group"
+    Name = "${var.environment_tag}-Jenkins Master SG"
   }
 }
 
@@ -114,6 +128,13 @@ resource "aws_security_group" "jenkins_slave" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -123,5 +144,36 @@ resource "aws_security_group" "jenkins_slave" {
 
   tags = {
     Name = "${var.environment_tag} - Jenkins Slave Security Group"
+  }
+}
+
+resource "aws_security_group" "docker_servers" {
+  name   = "Docker_servers"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    #self = true
+  }
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.10.100.0/24", "10.10.110.0/24", "10.10.120.0/24"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.environment_tag}-Docker Servers SG"
   }
 }
