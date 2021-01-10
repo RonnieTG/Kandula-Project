@@ -36,3 +36,7 @@ output "aws_security_group_jenkins_master" {
 output "aws_security_group_jenkins_slave" {
     value = aws_security_group.jenkins_slave.id
 }
+
+output "aws_security_group_all_worker_mgmt" {
+    value = aws_security_group.all_worker_mgmt.id
+}
