@@ -18,7 +18,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default = "Ronnie-US-key-pair"
+  default = "XXX"
 }
 
 
@@ -41,3 +41,4 @@ variable "kubernetes_version" {
   default = 1.18
   description = "kubernetes version"
 }
+

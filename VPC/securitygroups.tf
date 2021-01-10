@@ -9,7 +9,7 @@ resource "aws_security_group" "ansible_servers" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["31.168.210.31/32"]
     #self = true
   }
 
@@ -35,7 +35,7 @@ resource "aws_security_group" "consul_servers" {
     to_port     = 22
     protocol    = "tcp"
     #self = true
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["31.168.210.31/32"]
   }
 
   ingress {
@@ -81,7 +81,7 @@ resource "aws_security_group" "jenkins_master" {
     to_port     = 22
     protocol    = "tcp"
     #self = true
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["31.168.210.31/32"]
   }
 
   ingress {
@@ -119,7 +119,8 @@ resource "aws_security_group" "jenkins_slave" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    self = true
+    #self = true
+    cidr_blocks = ["31.168.210.31/32"]
   }
 
   ingress {
@@ -156,7 +157,7 @@ resource "aws_security_group" "docker_servers" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["31.168.210.31/32"]
     #self = true
   }
 

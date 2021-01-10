@@ -19,11 +19,6 @@ variable "public_subnets" {
     default = ["10.10.100.0/24", "10.10.110.0/24", "10.10.120.0/24"]
 }
 
-#variable "eks_subnet" {
-#    type = list(string)
-#    default = ["10.10.200.0/24"]
-#}
-
 variable "environment_tag" {
     default = "Kandula-PROD"
 }
@@ -31,4 +26,3 @@ variable "environment_tag" {
 variable "ubuntu_account_number" {
   default = "099720109477"
 }
-

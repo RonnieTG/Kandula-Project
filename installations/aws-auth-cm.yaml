@@ -10,7 +10,7 @@ data:
       groups:
         - system:bootstrappers
         - system:nodes
-    - rolearn: arn:aws:iam::260069798547:role/aws_cli 
+    - rolearn: arn:aws:iam::111122223333:role/aws_cli 
       username: aws_cli
       groups: 
         - system:masters
