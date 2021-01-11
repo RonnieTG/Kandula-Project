@@ -10,7 +10,7 @@ variable "ubuntu_account_number" {
 }
 
 variable "environment_tag" {
-    default = "Kandula-PROD"
+    default = "kandula-prod"
 }
 
 variable "instance_type" {
@@ -18,14 +18,14 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default = "XXX"
+  default = "Ronnie-US-key-pair"
 }
 
 
 locals {
-  cluster_name = "Kandula-PROD-${random_string.suffix.result}"
+  cluster_name = "kandula-prod-${random_string.suffix.result}"
   k8s_service_account_namespace = "default"
-  k8s_service_account_name      = "Kandula-PROD-sa"
+  k8s_service_account_name      = "kandula-prod-sa"
   tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"             = "1"
