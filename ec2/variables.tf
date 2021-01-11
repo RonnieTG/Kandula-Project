@@ -18,7 +18,7 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default = "xxx"
+  default = "Ronnie-US-key-pair"
 }
 
 locals {

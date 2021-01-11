@@ -40,6 +40,8 @@ resource "aws_instance" "jenkins_slave" {
   subnet_id              = module.vpc.private_subnet[count.index]
   vpc_security_group_ids = [module.vpc.aws_security_group_jenkins_slave]
   key_name               = var.key_name
+  associate_public_ip_address = true
+  user_data              = file("../installations/install_jenkins_agent.sh")
   tags = {
     Name = "${var.environment_tag}-Jenkins-Slave-${count.index + 1}"
   }
