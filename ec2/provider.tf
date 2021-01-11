@@ -1,3 +1,6 @@
+# This file contains provider information for AWS in general and EKS # 
+
+
 provider "aws" {
     region  = var.region
     #version = "~> 2.0"

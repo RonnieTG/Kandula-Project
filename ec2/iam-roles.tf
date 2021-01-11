@@ -1,3 +1,6 @@
+# This file contains IAM roles for Consul and EKS # 
+
+
 # Create an IAM role for the auto-join
 resource "aws_iam_role" "auto-join" {
   name               = "kandula-prod-auto-join"

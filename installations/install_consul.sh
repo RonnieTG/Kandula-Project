@@ -46,7 +46,7 @@ tee /etc/consul.d/config.json > /dev/null <<EOF
 {
   "advertise_addr": "$PRIVATE_IP",
   "data_dir": "/opt/consul",
-  "datacenter": "Kandula-PROD",
+  "datacenter": "kandula-prod-dc",
   "encrypt": "uDBV4e+LbFW3019YKPxIrg==",
   "disable_remote_exec": true,
   "disable_update_check": true,

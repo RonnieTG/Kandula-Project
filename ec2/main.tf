@@ -1,3 +1,6 @@
+# This file contains all modules # 
+
+
 module "vpc" {
     source = "../vpc/"
 }
@@ -25,14 +28,14 @@ module "eks" {
   worker_groups = [
     {
       name                          = "worker-group-1"
-      instance_type                 = "t3.medium"
+      instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       asg_desired_capacity          = 2
       additional_security_group_ids = [module.vpc.aws_security_group_all_worker_mgmt]
     },
     {
       name                          = "worker-group-2"
-      instance_type                 = "t3.large"
+      instance_type                 = "t2.micro"
       additional_userdata           = "echo foo bar"
       asg_desired_capacity          = 2
       additional_security_group_ids = [module.vpc.aws_security_group_all_worker_mgmt]

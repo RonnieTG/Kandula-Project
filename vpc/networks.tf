@@ -32,16 +32,6 @@ resource "aws_subnet" "public" {
   }
 }
 
-#resource "aws_subnet" "eks" {
-#  count             = 1
-#  vpc_id            = aws_vpc.vpc.id
-#  cidr_block        = var.eks_subnet[count.index]
-#  availability_zone = data.aws_availability_zones.available.names[count.index]
-#  tags = {
-#    Name = "${var.environment_tag}-EKS-${(count.index + 1)}"
-#  }
-#}
-
 
 # Internet gateway
 resource "aws_internet_gateway" "igw" {

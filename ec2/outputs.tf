@@ -1,3 +1,6 @@
+# This file contains outputs to be used after applying Terraform # 
+
+
 output "consul_server" {
     value = aws_instance.consul_server.*.public_dns
 }

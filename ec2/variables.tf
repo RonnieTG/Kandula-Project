@@ -18,9 +18,8 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  default = "Ronnie-US-key-pair"
+  default = "xxx"
 }
-
 
 locals {
   cluster_name = "kandula-prod-${random_string.suffix.result}"
@@ -41,4 +40,3 @@ variable "kubernetes_version" {
   default = 1.18
   description = "kubernetes version"
 }
-
