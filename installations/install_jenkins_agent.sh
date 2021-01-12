@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+### This file fully installs and configures Consul agent for Jenkins agents
 set -e
+
+sleep 120
 
 ### set consul version
 CONSUL_VERSION="1.8.5"
@@ -55,26 +58,6 @@ tee /etc/consul.d/config.json > /dev/null <<EOF
 }
 EOF
 
-# Register the webserver service
-cat << EOF >/etc/consul.d/webserver-80.json
-{
-    "service": {
-        "name": "jenkins-master",
-        "id": "jenkins-master-80",
-        "port": 80,
-        "checks": [
-            {
-                "id": "http",
-                "name": "HTTP on port 80",
-                "http": "http://localhost:80/",
-                "interval": "10s",
-                "timeout": "1s"
-            }
-        ]
-    }
-}
-EOF
-
 # Create user & grant ownership of folders
 useradd consul
 chown -R consul:consul /opt/consul /etc/consul.d /run/consul
@@ -102,5 +85,44 @@ EOF
 systemctl daemon-reload
 systemctl enable consul.service
 systemctl start consul.service
+
+
+tee /etc/consul.d/jenkins_master.json > /dev/null <<"EOF"
+{
+  "service": {
+    "id": "jenkins-8080",
+    "name": "jenkins",
+    "tags": ["jenkins"],
+    "port": 80,
+    "checks": [
+      {
+        "id": "tcp",
+        "name": "TCP on port 8080",
+        "tcp": "localhost:8080",
+        "interval": "10s",
+        "timeout": "1s"
+      },
+      {
+        "id": "http",
+        "name": "HTTP on port 8080",
+        "http": "http://localhost:8080/",
+        "interval": "30s",
+        "timeout": "1s"
+      },
+      {
+        "id": "service",
+        "name": "docker service",
+        "args": ["systemctl", "status", "docker.service"],
+        "interval": "60s"
+      }
+    ]
+  }
+}
+EOF
+
+systemctl stop consul.service
+systemctl start consul.service
+
+consul reload
 
 exit 0

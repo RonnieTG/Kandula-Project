@@ -21,10 +21,6 @@ output "vpc_cidr" {
     value = aws_vpc.vpc.id
 }
 
-output "aws_security_group_ansible_servers" {
-    value = aws_security_group.ansible_servers.id
-}
-
 output "aws_security_group_consul_servers" {
     value = aws_security_group.consul_servers.id
 }

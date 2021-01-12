@@ -56,7 +56,7 @@ resource "aws_security_group" "jenkins_master" {
     to_port     = 22
     protocol    = "tcp"
     #self = true
-    cidr_blocks = ["31.168.210.31/32"]
+    cidr_blocks = ["10.10.100.0/24", "10.10.110.0/24", "10.10.120.0/24", "31.168.210.31/32"]
   }
 
   ingress {
@@ -95,7 +95,7 @@ resource "aws_security_group" "jenkins_slave" {
     to_port     = 22
     protocol    = "tcp"
     #self = true
-    cidr_blocks = ["31.168.210.31/32"]
+    cidr_blocks = ["10.10.100.0/24", "10.10.110.0/24", "10.10.120.0/24", "31.168.210.31/32"]
   }
 
   ingress {

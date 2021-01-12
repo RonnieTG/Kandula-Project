@@ -37,7 +37,7 @@ resource "aws_instance" "jenkins_slave" {
   count                  = 2
   ami                    = module.vpc.aws_ami_id
   instance_type          = var.instance_type
-  subnet_id              = module.vpc.private_subnet[count.index]
+  subnet_id              = module.vpc.public_subnet[count.index]
   vpc_security_group_ids = [module.vpc.aws_security_group_jenkins_slave]
   key_name               = var.key_name
   associate_public_ip_address = true
