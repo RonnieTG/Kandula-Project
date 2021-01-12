@@ -1,0 +1,31 @@
+node("linux") {
+    stage("Fetch Kandula from Github repo") {
+        git branch: 'main', credentialsId: 'github.ronnietg.login', url: 'https://github.com/RonnieTG/kandula_assignment.git'
+    }
+    
+    stage("Create the Docker image") {
+        customImage = docker.build("ronnietg/opsschool-kandula-app:latest")
+    }
+    
+    stage("Run the app locally for testing") {
+        container = customImage.run('-p 5000:5000')
+    }
+    
+    stage ("Test app responsivity") {
+        sh 'sleep 10'
+        response = sh (script: 'curl -Is localhost:5000 | head -1 | awk \'{print $2}\'', returnStdout: true).trim()
+        if ("$response" == "200"){
+            echo "Response in ${response} , Kandula is up"
+            withDockerRegistry(credentialsId: 'dockerhub.ronnietg') {
+                build 'deploy-to-kandula'
+            }
+        }
+        else{
+            container.stop()
+            error("Kandula might not be running, error code $response")
+        }
+    }
+    stage('clean'){
+       container.stop()
+    }
+}

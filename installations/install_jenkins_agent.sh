@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 ### This file fully installs and configures Consul agent for Jenkins agents
 set -e
